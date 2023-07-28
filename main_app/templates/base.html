@@ -8,17 +8,19 @@
   <title>Finch Collector</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
   <header class="navbar-fixed">
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper orange lighten-3">
         <ul>
-          <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Finch Collector</a></li>
+          <li><a href="{% url 'home' %}" class="left brand-logo grey-text text-darken-3">&nbsp;&nbsp;Finch Collector</a></li>
         </ul>
         <ul class="right">
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'index' %}">View All Finches</a></li>
+          <li><a href="{% url 'about' %}" class="grey-text text-darken-3">About</a></li>
+          <li><a href="{% url 'finches_create' %}" class="grey-text text-darken-3">Log Discovery</a></li>
+          <li><a href="{% url 'index' %}" class="grey-text text-darken-3">View All Finches</a></li>
         </ul>
       </div>
     </nav>
@@ -27,8 +29,8 @@
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2023 Finch Collector &nbsp;</div>
+  <footer class="page-footer orange lighten-3">
+    <div class="right grey-text text-darken-3">All Rights Reserved, &copy; 2023 Finch Collector &nbsp;</div>
   </footer>
 </body>
 </html>

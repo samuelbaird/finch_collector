@@ -1,16 +1,60 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Finch Details</h1>
 
-<div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ finch.common_name }}</span>
-      <p>Species: {{ finch.scientific_name }}</p>
-      <p>Beak Type: {{ finch.beak_type }}</p>
-      <p>Diet: {{ finch.food }}</p>
-      <img src="{{ finch.image }}" alt="Photo of {{ finch.common_name }}" />
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ finch.common_name }}</span>
+        <p>Species: {{ finch.scientific_name }}</p>
+        <p>Beak Type: {{ finch.beak_type }}</p>
+        <p>Diet: {{ finch.food }}</p>
+        <img style="max-width: 350px;" src="{{ finch.image }}" alt="Photo of {{ finch.common_name }}" />
+      </div>
+
+      <div class="card-action">
+        <a href="{% url 'finches_update' finch.id %}">Edit</a>
+        <a href="{% url 'finches_delete' finch.id %}">Delete</a>
+      </div>
     </div>
+  </div>
+  <div class="col s6">
+    <form method="POST" action="{% url 'add_sighting' finch.id %}">
+      {% csrf_token %} 
+      {{ sighting_form.as_p }}  
+      <input type="submit" value="Add Sighting" class="btn" />
+    </form>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Sighting</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sighting in finch.sighting_set.all %}
+        <tr>
+          <td>{{sighting.date}}</td>
+          <td>{{sighting.get_location_display}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<script>
+  const dateEl = document.getElementById("id_date");
+  M.Datepicker.init(dateEl, {
+    format: "yyyy-mm-dd",
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  const selectEl = document.getElementById("id_location");
+  M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %}
