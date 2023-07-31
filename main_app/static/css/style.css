@@ -12,10 +12,3 @@ footer.page-footer {
   padding-top: 0;
   text-align: right;
 }
-
-.home {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Darwin%27s_finches_by_Gould.jpg/1280px-Darwin%27s_finches_by_Gould.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}

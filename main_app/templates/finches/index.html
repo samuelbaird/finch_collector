@@ -1,5 +1,4 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Finch List</h1>
 
@@ -10,10 +9,15 @@
       <span class="card-title">{{ finch.common_name }}</span>
       <p>Species: {{ finch.scientific_name }}</p>
       <p>Beak Type: {{ finch.beak_type }}</p>
-      <p>Diet: {{ finch.food }}</p>
-      <img src="{{ finch.image }}" alt="Photo of {{ finch.common_name }}" style="max-width: 350px;" />
+      <p>
+        Diet: {% for food in finch.food.all %} {{ food.name }}{% if not forloop.last %}, {% endif %} {% endfor %}
+      </p>
+      <img
+        src="{{ finch.image }}"
+        alt="Photo of {{ finch.common_name }}"
+        style="max-width: 350px"
+      />
     </div>
   </a>
 </div>
-{% endfor %} 
-{% endblock %}
+{% endfor %} {% endblock %}
