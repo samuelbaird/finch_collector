@@ -12,4 +12,9 @@ urlpatterns = [
     path('finches/<int:finch_id>/add_sighting/', views.add_sighting, name='add_sighting'),
     path('finches/<int:finch_id>/assoc_food/<int:food_id>/', views.assoc_food, name='assoc_food'),
     path('finches/<int:finch_id>/unassoc_food/<int:food_id>/', views.unassoc_food, name='unassoc_food'),
+    path('food/create/', views.FoodCreate.as_view(), name='food_create'),
+    path('food/<int:pk>/update/', views.FoodUpdate.as_view(), name='food_update'),
+    path('food/<int:pk>/delete/', views.FoodDelete.as_view(), name='food_delete'),
+    path('food/', views.food_index, name='food_index'),
+    path('food/<int:food_id>/', views.food_detail, name='food_detail'),
 ]

@@ -59,3 +59,25 @@ def assoc_food(request, finch_id, food_id):
 def unassoc_food(request, finch_id, food_id):
     Finch.objects.get(id=finch_id).food.remove(food_id)
     return redirect('detail', finch_id=finch_id)
+
+class FoodCreate(CreateView):
+    model = Food
+    fields = ['name']
+
+class FoodUpdate(UpdateView):
+    model = Food
+    fields = ['name']
+
+class FoodDelete(DeleteView):
+    model = Food
+    success_url = '/finches/'
+
+def food_index (request):
+    foods = Food.objects.all()
+    return render(request, 'food/index.html', {
+        'foods': foods
+    })
+
+def food_detail (request, food_id):
+    food = Food.objects.get(id=food_id)
+    return render(request, 'food/detail.html', {'food': food})
